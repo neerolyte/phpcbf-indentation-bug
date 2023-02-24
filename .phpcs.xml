@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Matrix"
+		 xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+	<description>PHP_CodeSniffer Standard</description>
+
+	<arg name="basepath" value="."/>
+	<arg name="cache" value=".phpcs-cache"/>
+	<arg name="colors"/>
+	<arg name="tab-width" value="4"/>
+	<arg name="parallel" value="20"/>
+
+	<file>old-code/</file>
+	<file>psr12/</file>
+
+	<!-- Check PHP syntax (php -l) on all files -->
+	<rule ref="Generic.PHP.Syntax" />
+
+	<!-- Modern files all follow PSR12 -->
+	<rule ref="PSR12">
+		<exclude-pattern>old-code/</exclude-pattern>
+	</rule>
+
+	<!-- Legacy files just get tab based indentation enforced -->
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent">
+		<exclude-pattern>psr12/</exclude-pattern>
+	</rule>
+	<rule ref="Generic.WhiteSpace.ScopeIndent">
+		<exclude-pattern>psr12/</exclude-pattern>
+		<properties>
+			<property name="tabIndent" value="true"/>
+		</properties>
+	</rule>
+</ruleset>
