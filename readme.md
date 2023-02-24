@@ -1,0 +1,1 @@
+This is just here to repro https://github.com/squizlabs/PHP_CodeSniffer/issues/3765 .
